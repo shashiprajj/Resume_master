@@ -1,0 +1,10 @@
+            <h5 style="margin-left:30%" >{{ total_likes }} Like{{ total_likes|pluralize }}</h5>
+            {% comment %} Like Section {% endcomment %}
+            <form action="{% url 'like_post' %}" method="POST">
+            {% csrf_token %}
+            {% if is_liked %}
+            <button style="margin-left:30%" id="like" type="submit" name="post_id" value="{{ post.id }}" class="btn btn-danger">DisLike</button>
+            {% else %}
+            <button style="margin-left:30%" id="like" type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
+            {% endif %}
+            </form>

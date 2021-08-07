@@ -1,0 +1,47 @@
+.head {
+    color: red;
+}
+
+body {
+    /* background-color: bisque; */
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7LcqM07Iq9hGt1TNqKoja3Q0K0rsabIZcg&usqp=CAU");
+}
+
+#background-image {
+    background-image: url('https://images.all-free-download.com/images/graphicthumb/abstract_smooth_wave_background_vector_grapihic_art_569579.jpg');
+}
+
+.topnav a:hover {
+    border-bottom: 3px solid red;
+}
+
+.img-profile {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+#course {
+    margin: 0 auto;
+    text-align: left;
+    box-sizing: border-box;
+    background-color: aqua;
+    border-radius: 30px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+#certificate {
+    width: 350px;
+    height: 350px;
+    padding: 10px;
+}
+
+#certificate:hover {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+}

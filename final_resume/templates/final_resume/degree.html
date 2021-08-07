@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %} {% load crispy_forms_tags %}
+{% block title %}Post Degree{% endblock title %}
+
+{% block content %}
+
+<div>
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">1st Year degree</legend>
+        <div class="form-group">
+
+        {% if year_1 %}
+        <hr>
+        <h5 style="font-style:italic; color:red">Update or Delete 1st Year Details</h5><hr>
+        <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'first_year_update' %}">Update 1st Year Form</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'first_year_delete' %}">Delete 1st Year Form</a></button>
+        {% else %}
+        <hr>
+        <h5 style="font-style:italic; color:red">Fill 1st Year Details</h5><hr>
+        <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'first_year_form' %}">Fill 1st Year Form</a></button>
+        {% endif %}
+        </div>
+</fieldset>
+
+<hr>
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">2nd Year degree</legend>
+        <div class="form-group">
+
+        {% if year_2 %}
+        <hr>
+        <h5 style="font-style:italic; color:red">Update or Delete 2nd Year Details</h5><hr>
+        <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'second_year_update' %}">Update 2nd Year Form</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'second_year_delete' %}">Delete 2nd Year Form</a></button>
+        {% else %}
+        <hr>
+        <h5 style="font-style:italic; color:red">Fill 2nd Year Details</h5><hr>
+        <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'second_year_form' %}">Fill 2nd Year Form</a></button>
+        {% endif %}
+        </div>
+</fieldset>
+
+<hr>
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">3rd Year degree</legend>
+        <div class="form-group">
+
+        {% if year_3 %}
+        <hr>
+        <h5 style="font-style:italic; color:red">Update or Delete 3rd Year Details</h5><hr>
+        <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'third_year_update' %}">Update 3rd Year Form</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'third_year_delete' %}">Delete 3rd Year Form</a></button>
+        {% else %}
+        <hr>
+        <h5 style="font-style:italic; color:red">Fill 3rd Year Details</h5><hr>
+        <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'third_year_form' %}">Fill 3rd Year Form</a></button>
+        {% endif %}
+</fieldset>
+
+<hr>
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">4th Year degree</legend>
+
+        {% if year_4 %}
+        <hr>
+        <h5 style="font-style:italic; color:red">Update or Delete 4th Year Details</h5><hr>
+        <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'fourth_year_update' %}">Update 4th Year Form</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'fourth_year_delete' %}">Delete 4th Year Form</a></button>
+        {% else %}
+        <p style="font-style:italic; color:red">(If your Branch have Fourth Year or Exit)</p>
+        <div class="form-group">
+        <hr>
+        <h5 style="font-style:italic; color:red">Fill 4th Year Details</h5><hr>
+        <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'fourth_year_form' %}">Fill 4th Year Form</a></button>
+        {% endif %}
+</fieldset>
+</div>
+
+{% endblock content %}

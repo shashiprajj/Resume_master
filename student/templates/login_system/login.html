@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}   {% load crispy_forms_tags %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container">
+ <div class="row">
+   <form action="" method="post" novalidate class="shadow p-5">
+   {% if messages %}
+      {% for message in messages %}
+         <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5"  {% endif %}>{{message}}</p>
+      {% endfor %}
+   {% endif %}
+   
+        {% csrf_token %}
+        <fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+        <legend class="border-bottom mb-4">Login</legend>
+                        <div class="form-group">
+                    {{form|crispy}} <small class="text-danger">{{ form.errors|striptags}}</small>
+                </div>
+     
+
+        <small><a href="{% url 'password_reset' %}">Forget Password?</a></small> <br>
+        <button type="submit" class="btn btn-primary mt-4" value="submit">Login</button>
+        {% comment %} <input type="submit" class="btn btn-primary mt-4" value="Login"> <br> {% endcomment %}
+        <div class="text-center text-primary fw-bold"><small>New to Resume-Master? <a href="{% url 'register' %}" class="text-danger"
+        >Create an Account</a></small>
+        </div>
+
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <p class="alert alert-danger my-3">{{error}}</p>
+    {% endfor %}
+    {% endif %}
+</fieldset>
+   </form>
+  </div>
+</div>
+{% endblock content %}

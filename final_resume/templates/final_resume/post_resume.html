@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %} {% load crispy_forms_tags %}
+{% block title %}Post Resume{% endblock title %}
+
+{% block content %}
+
+<div>
+    {% if messages %}
+      {% for message in messages %}
+         <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5"  {% endif %}>{{message}}</p>
+      {% endfor %}
+   {% endif %}
+   
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">Personal Details</legend>
+        <div class="form-group">
+
+        {% if personal_detail %}
+        <hr>
+            <h5 style="font-style:italic; color:red">Update or Delete Personal Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'personal_detail_update' %}">Update Personal Detail Form</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'personal_detail_delete' %}">Delete Personal Detail Form</a></button>
+            {% else %}
+            <hr>
+            <h5 style="font-style:italic; color:red">Fill Personal Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'personal_detail_form' %}">Fill Personal Detail Form</a></button>
+            {% endif %}
+            {% comment %} <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'personal_detail_form' %}">Fill Personal Detail Form</a></button> {% endcomment %}
+            {% comment %} <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'personal_detail_update' %}">Update Personal Detail Form</a></button> {% endcomment %}
+        </div>
+</fieldset>
+
+<hr>
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">10th Standard</legend>
+        <div class="form-group">
+
+            {% if std_10 %}
+            <hr>
+            <h5 style="font-style:italic; color:red">Update or Delete 10th Standard Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'std_10_update' %}">Update 10th Form</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'std_10_delete' %}">Delete 10th Form</a></button>
+            {% else %}
+            <hr>
+            <h5 style="font-style:italic; color:red">Fill 10th Standard Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'std_10_form' %}">Fill 10th Form</a></button>
+            {% endif %}
+            {% comment %} <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'std_10_update' %}">Update 1oth Form</a></button> {% endcomment %}
+        </div>
+</fieldset>
+
+<hr>
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">12th Standard</legend>
+        <div class="form-group">
+
+        {% if std_12 %}
+        <hr>
+            <h5 style="font-style:italic; color:red">Update or Delete 12th Standard Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'std_12_update' %}">Update 12th Form</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'std_12_delete' %}">Delete 12th Form</a></button>
+            {% else %}
+            <hr>
+            <h5 style="font-style:italic; color:red">Fill 12th Standard Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'std_12_form' %}">Fill 12th Form</a></button>
+            {% endif %}
+            {% comment %} <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'std_12_form' %}">Fill 12th Form</a></button> {% endcomment %}
+        </div>
+</fieldset>
+
+<hr>
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">Degree Details</legend>
+        <div class="form-group">
+
+        <hr>
+        <h5 style="font-style:italic; color:red">Fill, Update or Delete Degree Details</h5><hr>
+        <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'degree_details' %}">Degree Form</a></button>
+        </div>
+</fieldset>
+
+<hr>
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">Technical Skills</legend>
+        <div class="form-group">
+
+        {% if technical_skills %}
+        <hr>
+            <h5 style="font-style:italic; color:red">Update or Delete Technical Skills Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'technical_skills_update' %}">Update Technical Skills Detail Form</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'technical_skills_delete' %}">Delete Technical Skills Detail Form</a></button>
+            {% else %}
+            <hr>
+            <h5 style="font-style:italic; color:red">Fill Technical Skills Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'technical_skills' %}">Fill Technical Skills Detail Form</a></button>
+            {% endif %}
+</fieldset>
+
+<hr>
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <legend class="border-bottom mb-4">Interests</legend>
+        <div class="form-group">
+
+        {% if interests %}
+        <hr>
+            <h5 style="font-style:italic; color:red">Update or Delete Interests (Personal and Professional) Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'interests_update' %}">Update Interests Detail Form</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'interests_delete' %}">Delete Interests Detail Form</a></button>
+            {% else %}
+            <hr>
+            <h5 style="font-style:italic; color:red">Fill Interests (Personal and Professional) Details</h5><hr>
+            <div class="form-group offset-md-3">
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'Interests' %}">Fill Interests Detail Form</a></button>
+            {% endif %}
+</div>
+
+{% endblock content %}

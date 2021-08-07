@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %} {% load crispy_forms_tags %}
+{% block title %}Post 4th Year Form{% endblock title %}
+
+{% block content %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% if messages %}
+      {% for message in messages %}
+         <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5"  {% endif %}>{{message}}</p>
+      {% endfor %}
+   {% endif %}
+   
+    {% csrf_token %}
+
+    <fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+            <legend class="border-bottom mb-4">Fourth Year</legend>
+            <p style="font-style:italic; color:red">(If your Branch have Fourth Year or Exit)</p>
+                <div class="form-group">
+                    
+                    <hr>
+                    <h5 style="font-style:italic; color:red">Fill Fourth Year Details</h5><hr>
+                    {{ fourth_year_form|crispy }} <small class="text-danger">{{ form.errors|striptags}}</small>
+
+                    <hr>
+                </div>
+                <div class="form-group offset-md-6">
+            <button class="btn btn-outline-success" type="submit">Post</button>
+        </div>
+        </fieldset>
+    
+    </form>
+
+{% endblock content %}

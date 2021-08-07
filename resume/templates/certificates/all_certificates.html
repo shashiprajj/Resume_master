@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}All Certificates{% endblock title %}
+
+{% block content %}
+
+{% if all_certificate %}
+    {% for certificate in all_certificate %}
+        <a style='color:white; text-decoration:None' href="{% url 'course_detail' certificate.id %}">
+        <div class = "container" id="background-posts" 
+        style="color:white;margin-bottom:10px; margin-left:50px; margin-right:50px; border-radius:15%">
+            <div class="row">
+                <div class = "col-md-5 col-sm-12" > <br>
+                        <h4>Course Name: {{certificate.course_name}}</h4>
+                        <h5>Course Platform: {{certificate.course_platform}}</h5>
+                        <h5>Date Completed: {{certificate.date_completed}}</h5>
+                        <h5>{{certificate.date_posted|date:"d-m-Y"}}</h5>
+                        <p><h5>About Course:</h5> {{certificate.course_description}}</p>
+                </div>
+                <div class = "col-md-5 col-sm-10 offset-sm-2">
+                    <img id="certificate" class = "certificate" src="{{ certificate.course_img.url }}" alt="">
+                </div>
+                
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+        <div class = "container" id="background-posts" 
+        style="color:white;margin-bottom:10px; margin-left:50px; margin-right:50px; border-radius:15%">
+            <div class="row">
+                <div class = "col-md-5 offset-md-4 col-sm-12 offset-sm-4" > <br>
+                            <legend class="border-bottom">Not Found Anything to Show Up!!!</legend>
+                            
+                            <img style = "width:400px; height:400px;" 
+                            src="https://tss-static-images.gumlet.io/emptyCart.png" alt="">
+            {% comment %} https://i1.wp.com/www.huratips.com/wp-content/uploads/2019/04/empty-cart.png?resize=603%2C288&ssl=1 {% endcomment %}
+            <h5>Upload Certificates you have achieved!!!</h5>
+            <button style="margin-left:20%" class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'post_certificate' %}">Post Certificates</a></button>
+                </div>
+            </div>
+        </div>
+
+{% endif %}
+
+<div class="col-lg-6 offset-lg-4 col-sm-12 offset-sm-3" style="margin-top:15px;">
+        {% if is_paginated %} {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a> {% endif %} {% for num in page_obj.paginator.page_range %} {% if page_obj.number == num %}
+        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a> {% endif %} {% endfor %} {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a> {% endif %} {% endif %}
+    </div>
+    
+    {% endblock content %}

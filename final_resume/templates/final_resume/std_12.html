@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %} {% load crispy_forms_tags %}
+{% block title %}Post 12th Form{% endblock title %}
+
+{% block content %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% if messages %}
+      {% for message in messages %}
+         <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5"  {% endif %}>{{message}}</p>
+      {% endfor %}
+   {% endif %}
+   
+    {% csrf_token %}
+
+    <fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+            <legend class="border-bottom mb-4">12th Standard</legend>
+                <div class="form-group">
+
+                    <hr>
+                    <h5 style="font-style:italic; color:red">Fill 12th Standard Details</h5><hr>
+                    {{ std_12_form|crispy }} <small class="text-danger">{{ form.errors|striptags}}</small>                    
+
+                <div class="form-group offset-md-6">
+            <button class="btn btn-outline-success" type="submit">Post</button>
+        </div>
+        </fieldset>
+    </form>
+
+<fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+    <hr>
+    <p style="font-style:italic; color:red">Skip and Jump to Next ( If not Studied 12th.)</p>
+    <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'technical_skills' %}">Fill Technical Skills Form</a></button>
+    <hr>
+</fieldset>
+{% endblock content %}

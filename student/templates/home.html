@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+  {% if messages %}
+    {% for message in messages %}
+      <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <img class="img-profile" style="border-radius: 50%;width: 400px;height:400px;box-shadow:30px -15px red" src="{{ user.profile.image.url }}" alt="">
+            </div>
+
+        <div class="col-md-6 col-sm-12" style="color:white; font-family: URW Chancery L, cursive;">
+            
+            {% comment %} <h1 class="head">Hello {{request.user.username}} !!!</h1>
+          {% if profile %}
+            <h4>Full Name: {{profile.full_name}}</h4>
+            <h4>College: {{profile.college}}</h4>
+            <h4>City: {{profile.city}}</h4>
+            <h4>State: {{profile.state}}</h4>
+          {% else %}
+            <h5>Please Complete your Profile by clicking on Profile Update to get featured Profile!!!</h5>
+            <br><br>
+          {% endif %} {% endcomment %}
+            <h1 class="head">Hello {{user.username}} !!!</h1>
+            {% if profile %}
+            <h4>Full Name: {{ profile.full_name }}</h4>
+            <h4>College: {{ profile.college }}</h4>
+            <h4>Email: {{ profile.username.email }}</h4>
+            <h4>City: {{ profile.city }}</h4>
+            <h4>State: {{ profile.state }}</h4>
+            {% else %}
+            <h5>Please Update Your Profile to get better experience at your Home Page..</h5>
+            {% endif %}
+
+            {% if personal_detail %}
+            <h5>Contact No: {{ personal_detail.Contact_no }}</h5>
+            <h5>Nationality: {{ personal_detail.Nationality }}</h5>
+            <h5>Known Languages: {{ personal_detail.known_languages }}</h5>
+            {% endif %}
+            {% if address %}
+            <h5>Address: {{ address.room_no }}, {{ address.street_name }}, {{ address.locality }},
+                {{ address.city }}, {{ address.state }}, {{ address.zipcode }}.</h5>
+            {% endif %}
+        <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'home_update' %}">Profile Update</a></button>
+        <br>
+
+            
+        </div>
+        <button style="margin-top:10px" class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'post_resume' %}">Post or Edit Resume</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'user_projects' %}">Your Projects</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'user_posts' request.user.username %}">Your Feed</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'user_poems' %}">Your Writes</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'all_certificates' %}">Your Certificates</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'pdf_detail'  %}">View Resume (without Images)</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'pdf_detail_images' %}">View Resume (with Images)</a></button>
+
+      </div>
+    </div>
+            
+
+    {% endblock content %}

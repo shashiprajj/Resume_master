@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %} {% load crispy_forms_tags %}
+{% block title %}Resume View{% endblock title %}
+
+{% block content %}
+
+    {% if messages %}
+      {% for message in messages %}
+         <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5"  {% endif %}>{{message}}</p>
+      {% endfor %}
+   {% endif %}
+   
+    <fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-9 offset-md-2">
+            <legend class="border-bottom mb-4" style="color:red; margin:2px">{{profile.username}} Resume <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'pdf_detail_images' %}">View resume (With Images)</a></button></legend>
+                <div class="form-group">
+                    {% if profile %}
+                    <hr>
+                        <div class="container">
+                        <div class = "row">
+                            <div class = "col-lg-6 col-md-6 col-sm-12">
+                            <h5>Full Name: {{ profile.full_name }}</h5>
+                                <h5>College Name: {{ profile.college }}</h5>
+                                {% comment %} <h5>City: {{profile.city }}</h5> {% endcomment %}
+                                {% comment %} <h5>State: {{ profile.state }}</h5> {% endcomment %}
+                                <h5>Email id: {{ profile.username.email }}</h5>
+                                {% endif %}
+                                {% if personal_detail %}
+                                <h5>Contact No: {{ personal_detail.Contact_no }}</h5>
+                                <h5>Nationality: {{ personal_detail.Nationality }}</h5>
+                                <h5>Known Languages: {{ personal_detail.known_languages }}</h5>
+                                {% endif %}
+                            {% if address %}
+                            <h5>Address: {{ address.room_no }}, {{ address.street_name }}, {{ address.locality }},
+                                {{ address.city }}, {{ address.state }}, {{ address.zipcode }}.</h5>
+                            {% endif %}
+                            </div>
+                    </div>
+                    </div>
+
+
+{% if std_10 %}
+<hr>
+<h4 style="text-decoration:underline; color:red">ACADEMIC QUALIFICATION:</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Examination</th>
+      <th scope="col">Year of Passing</th>
+      <th scope="col">College/Board/University</th>
+      <th scope="col">Percentage or CGPI</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">10th</th>
+      <td style="text-align:center;">{{ std_10.year_of_passing }}</td>
+      <td style="text-align:center;">{{ std_10.board }}</td>
+      <td style="text-align:center;">{{ std_10.percentage }}</td>
+      <td style="text-align:center;">{{ std_10.status }}</td>
+    </tr>
+{% endif %}
+{% if std_12 %}
+    <tr>
+      <th scope="row">12th ({{ std_12.field }})</th>
+      <td style="text-align:center;">{{ std_12.year_of_passing }}</td>
+      <td style="text-align:center;">{{ std_12.board }}</td>
+      <td style="text-align:center;">{{ std_12.percentage }}</td>
+      <td style="text-align:center;">{{ std_12.status }}</td>
+    </tr>
+{% endif %}
+{% if year_1 %}
+    <tr>
+      <th scope="row">First Year ({{ year_1.field }})</th>
+      <td style="text-align:center;">{{ year_1.year_of_passing }}</td>
+      <td style="text-align:center;">{{ year_1.board }}</td>
+      <td style="text-align:center;">{{ year_1.cgpi }}</td>
+      <td style="text-align:center;">{{ year_1.status }}</td>
+    </tr>
+{% endif %}
+{% if year_2 %}
+    <tr>
+      <th scope="row">Second Year ({{ year_2.field }})</th>
+      <td style="text-align:center;">{{ year_2.year_of_passing }}</td>
+      <td style="text-align:center;">{{ year_2.board }}</td>
+      <td style="text-align:center;">{{ year_2.cgpi }}</td>
+      <td style="text-align:center;">{{ year_2.status }}</td>
+    </tr>
+{% endif %}
+{% if year_3 %}
+    <tr>
+      <th scope="row">Third Year ({{ year_3.field }})</th>
+      <td style="text-align:center;">{{ year_3.year_of_passing }}</td>
+      <td style="text-align:center;">{{ year_3.board }}</td>
+      <td style="text-align:center;">{{ year_3.cgpi }}</td>
+      <td style="text-align:center;">{{ year_3.status }}</td>
+    </tr>
+{% endif %}
+{% if year_4 %}
+    <tr>
+      <th scope="row">Fourth Year ({{ year_4.field }})</th>
+      <td style="text-align:center;">{{ year_4.year_of_passing }}</td>
+      <td style="text-align:center;">{{ year_4.board }}</td>
+      <td style="text-align:center;">{{ year_4.cgpi }}</td>
+      <td style="text-align:center;">{{ year_4.status }}</td>
+    </tr>
+{% endif %}
+  </tbody>
+</table>
+
+{% if technical_skills %}
+<hr>
+<p><h4 style="text-decoration:underline; color:red">INTRO:</h4> {{ technical_skills.quick_bio }}</p>
+<p><h4 style="text-decoration:underline; color:red">KNOWN PROGRAMMING LANGUAGES:</h4> {{ technical_skills.languages_known }}</p>
+<p><h4 style="text-decoration:underline; color:red">EXPERTISE IN:</h4> {{ technical_skills.expert_in }}</p>
+<p><h4 style="text-decoration:underline; color:red">SOFT SKILLS:</h4> {{ technical_skills.soft_skills }}</p>
+{% endif %}
+
+{% if interest %}
+<hr>
+<p><h4 style="text-decoration:underline; color:red">AREAS OF PROFESSIONAL INTERESTS:</h4> {{ interest.professional_interest }}</p>
+<p><h4 style="text-decoration:underline; color:red">AREAS OF PERSONAL INTERESTS: </h4> {{ interest.personal_interest }}</p>
+<p><h4 style="text-decoration:underline; color:red">POSITIONS OF RESPONSIBILITIES::</h4> {{ interest.responsibilty }}</p>
+{% endif %}
+
+
+{% if certificate %}
+<hr>
+<h4 style="text-decoration:underline; color:red">ACADEMIC ACHIVEMENTS:</h4>
+
+{% for course in coursera %}
+    <p>Course name: {{ course.course_name }} from {{ course.course_platform }}</p>
+{% endfor %}
+
+{% for course in udemy %}
+    <p>Course name: {{ course.course_name }} from {{ course.course_platform }}</p>
+{% endfor %}
+
+{% for course in edx %}
+    <p>Course name: {{ course.course_name }} from {{ course.course_platform }}</p>
+{% endfor %}
+
+{% for course in others %}
+    <p>Course name: {{ course.course_name }}</p>
+{% endfor %}
+
+{% if drawing %}
+<h4 style="text-decoration:underline; color:red">EXTRA-CURRICULAR & CO-CURRICULAR ACHIVEMENTS (Drawing):</h4>
+{% for course in drawing %}
+    <p>Course name: {{ course.course_name }} certificate from {{ course.course_platform }} Competition</p>
+{% endfor %}
+{% endif %}
+
+{% if sports %}
+<h4 style="text-decoration:underline; color:red">EXTRA-CURRICULAR & CO-CURRICULAR ACHIVEMENTS (Sports):</h4>
+{% for course in sports %}
+    <p>Course name: {{ course.course_name }} certificate from {{ course.course_platform }}</p>
+{% endfor %}
+{% endif %}
+
+{% endif %}
+
+
+
+{% if projects %}
+<h4 style="text-decoration:underline; color:red">PROJECTS PERFORMED</h4>
+
+{% for project in projects %}
+  <h4>Project Title: {{ project.project_title }}</h4>
+  <p>Project Description: {{ project.project_description }}</p>
+
+  {% if project.project_code_link != "None" %}
+    <p>Project Code Link:<span style="color:blue; text-decoration:underline;">{{ project.project_code_link }}</span></p>
+  {% endif %}
+
+  {% if project.project_website_link != "None" %}
+  <p>Project Website Link:<span style="color:blue; text-decoration:underline;">{{ project.project_website_link }}</span></p>
+  {% endif %}
+
+{% endfor %}
+{% endif %}
+
+
+
+                    <hr>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'final_pdf' %}">Download PDF (without images)</a></button>
+            <button class="btn btn-outline-danger" ><a style = "text-decoration:None" href="{% url 'final_pdf_images' %}">Download PDF (with Images)</a></button>
+                </div>
+        </fieldset>
+
+{% endblock content %}

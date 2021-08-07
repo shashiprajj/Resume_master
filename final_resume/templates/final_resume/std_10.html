@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %} {% load crispy_forms_tags %}
+{% block title %}Post 10th Form{% endblock title %}
+
+{% block content %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+       {% if messages %}
+      {% for message in messages %}
+         <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5"  {% endif %}>{{message}}</p>
+      {% endfor %}
+   {% endif %}
+
+    {% csrf_token %}
+
+    <fieldset id="forms-background" style=" font-family: Noto Sans, sans-serif;" 
+                    class="form-group col-md-7 offset-md-3">
+            <legend class="border-bottom mb-4">10th Standard</legend>
+                <div class="form-group">
+
+                <hr>
+                    <h5 style="font-style:italic; color:red">Fill 10th Standard Details</h5><hr>
+                    {{ std_10_form|crispy }} <small class="text-danger">{{ std_10_form.errors|striptags}}</small>
+                    <div class="form-group offset-md-6">
+                        <button class="btn btn-outline-success" type="submit">Post</button>
+                    </div>
+
+    {% if std_10_form.non_field_errors %}
+    {% for error in std_10_form.non_field_errors %}
+    <p class="alert alert-danger my-3">{{error}}</p>
+    {% endfor %}
+    {% endif %}
+        </fieldset>
+    
+    </form>
+
+{% endblock content %}

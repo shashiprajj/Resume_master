@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Certificate Detail{% endblock title %}
+
+{% block content %}
+
+        <div class = "container" id="background-posts" 
+        style="color:white;margin-bottom:10px; margin-left:50px; margin-right:50px; border-radius:15%">
+            <div class="row">
+                <div class = "col-md-5 col-sm-12">  <br> <br>
+                        <h3>{{certificate.course_name}}</h3>
+                        <h4>{{certificate.course_platform}}</h4>
+                        <h4>{{certificate.date_completed}}</h4>
+                        <h4>{{certificate.date_posted|date:"d-m-Y"}}</h4>
+                        <p>{{certificate.course_description}}</p>
+                </div>
+                <div class = "col-md-5 col-sm-10 offset-sm-2">
+                    <img id="certificate" class = "certificate" src="{{ certificate.course_img.url }}" alt="">
+                </div>
+            </div>
+
+
+            <hr>
+            {% if user.is_authenticated %}
+            <div style="margin-left:40%">
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'update_certificate' certificate.id %}">Update <i class="fa fa-edit"></i></a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete_certificate' certificate.id %}">Delete <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </div>
+            {% endif%}
+        </div>
+
+    {% endblock content %}
