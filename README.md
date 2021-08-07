@@ -16,8 +16,8 @@ Where You will get the option to see your resume with or without image as per yo
 === ***Post & Update Certificate*** =====
 
 <p float="left">
-  <img src="media/screenshots/post_certificate.png" width="480" height="350">
-  <img src="media/screenshots/update_certificate.png" width="480" height="350">
+  <img src="media/screenshots/post_certificate.png" width="460" height="350">
+  <img src="media/screenshots/update_certificate.png" width="460" height="350">
 </p>
  
 
@@ -39,6 +39,6 @@ There Are Ever much more functionalities in the website where you can spend your
 
 
 <br/><br/>
-***Thank You***
+***Thank You........***
 
 
